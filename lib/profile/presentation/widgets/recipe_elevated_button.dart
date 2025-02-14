@@ -22,20 +22,22 @@ class RecipeElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.fromSize(
-      size: size,
-      child: ElevatedButton(
-        onPressed: callback,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          foregroundColor: foregroundColor,
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            fontFamily: "Poppins",
-            fontSize: fontSize,
-            fontWeight: FontWeight.w500,
+    return Center(
+      child: SizedBox.fromSize(
+        size: size,
+        child: ElevatedButton(
+          onPressed: callback,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: backgroundColor,
+            foregroundColor: foregroundColor,
+          ),
+          child: Text(
+            text,
+            style: TextStyle(
+              fontFamily: "Poppins",
+              fontSize: fontSize,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ),
