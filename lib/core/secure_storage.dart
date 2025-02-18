@@ -10,14 +10,12 @@ class SecureStorage {
     await _storage.write(key: _passwordKey, value: password);
   }
 
-  static Future<Map<String, String>?> getCredentials() async {
-    final String? login = await _storage.read(key: _loginKey);
-    final String? password = await _storage.read(key: _passwordKey);
-    if (login == null || password == null) {
-      return null;
-    }
-
-    return {"login": login, "password": password};
+  static Future<Map<String, String?>> getCredentials() async {
+    var credentials = {
+      "login": await _storage.read(key: _loginKey),
+      "password": await _storage.read(key: _passwordKey),
+    };
+    return credentials;
   }
 
   static Future<void> deleteCredentials() async {

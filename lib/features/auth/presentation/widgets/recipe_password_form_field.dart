@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:profile/core/colors.dart';
-import 'package:profile/core/sizes.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:profile/core/utils/colors.dart';
+import 'package:profile/core/utils/sizes.dart';
 
-class RecipeTextFormField extends StatelessWidget {
-  const RecipeTextFormField({
+class RecipePasswordFormField extends StatelessWidget {
+  const RecipePasswordFormField({
     super.key,
-    required this.title,
-    required this.hintText,
-    required this.validator,
     required this.controller,
+    required this.title,
   });
 
-  final String title, hintText;
-  final String? Function(String? value) validator;
   final TextEditingController controller;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -32,23 +30,30 @@ class RecipeTextFormField extends StatelessWidget {
           width: 375 * AppSizes.wRatio,
           child: TextFormField(
             controller: controller,
-            validator: validator,
+            maxLines: 1,
             style: TextStyle(
               color: AppColors.beigeColor,
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
             decoration: InputDecoration(
+              suffix: SvgPicture.asset(
+                "assets/icons/password.svg",
+                width: 25,
+                height: 25,
+                alignment: Alignment.center,
+                fit: BoxFit.cover,
+              ),
               filled: true,
               fillColor: AppColors.pink,
-              hintText: hintText,
+              hintText: "●●●●●●●",
               hintStyle: TextStyle(
+                letterSpacing: 5,
                 color: AppColors.beigeColor.withValues(alpha: 0.45),
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                height: 1,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
-              contentPadding: EdgeInsets.symmetric(horizontal: AppSizes.padding36),
+              contentPadding: EdgeInsets.only(left: AppSizes.padding36, right: 20),
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(18),

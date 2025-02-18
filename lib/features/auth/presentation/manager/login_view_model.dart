@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:profile/auth/data/repositories/AuthRepository.dart';
+
+import '../../data/repositories/AuthRepository.dart';
 
 class LoginViewModel extends ChangeNotifier {
-  LoginViewModel({required AuthRepository repo}) : _repo = repo;
+  LoginViewModel({
+    required AuthRepository repo,
+  }) : _repo = repo;
   final AuthRepository _repo;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String? _errorMessage;
 
@@ -11,7 +15,7 @@ class LoginViewModel extends ChangeNotifier {
 
   String? get errorMessage => _errorMessage;
 
-  final formKey = GlobalKey<FormState>();
+  // final formKey = GlobalKey<FormState>();
   final loginController = TextEditingController();
   final passwordController = TextEditingController();
 
