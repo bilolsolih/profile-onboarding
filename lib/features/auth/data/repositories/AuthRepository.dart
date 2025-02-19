@@ -14,7 +14,9 @@ class AuthRepository {
     await SecureStorage.deleteCredentials();
     await SecureStorage.saveCredentials(login: login, password: password);
     await SecureStorage.saveToken(token);
+    jwt = token;
   }
+
   Future<void> logout() async {
     await SecureStorage.deleteToken();
     await SecureStorage.deleteCredentials();

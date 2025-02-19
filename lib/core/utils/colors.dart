@@ -7,6 +7,11 @@ class AppColors {
   static const pink = Color(0xFFFFC6C9);
 
   static final lightColorScheme = ColorScheme.fromSeed(
+    surface: beigeColor,
+    onSurface: Colors.white,
+    primary: redPinkMain,
+    onPrimary: Colors.white,
+    tertiary: Colors.black,
     seedColor: redPinkMain,
   );
 }

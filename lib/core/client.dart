@@ -1,17 +1,16 @@
 import 'package:dio/dio.dart';
-import 'package:go_router/go_router.dart';
-import 'package:profile/core/core.dart';
 import 'package:profile/core/exceptions/auth_exception.dart';
 import 'package:profile/core/interceptor.dart';
-import 'package:profile/core/routing/routes.dart';
-import 'package:profile/core/secure_storage.dart';
 
 class ApiClient {
   ApiClient() {
+    dio = Dio(
+      BaseOptions(baseUrl: "http://192.168.1.80/api/v1", validateStatus: (status) => true),
+    );
     dio.interceptors.add(AuthInterceptor());
   }
 
-  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.1.80/api/v1"));
+  late final Dio dio;
 
   Future<String> login(String login, String password) async {
     var response = await dio.post(
@@ -44,6 +43,16 @@ class ApiClient {
       return data;
     } else {
       throw Exception("Failed to load onboarding pages");
+    }
+  }
+
+  Future<List<dynamic>> fetchWelcomePageCategories() async {
+    var response = await dio.get('/categories/list?Limit=6');
+    if (response.statusCode == 200) {
+      List<dynamic> data = response.data;
+      return data;
+    } else {
+      throw Exception("Welcome page uchun kategoriyalarni olib kelib bo'lmadi");
     }
   }
 }

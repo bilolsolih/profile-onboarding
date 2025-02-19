@@ -17,46 +17,48 @@ class RecipeTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: 10,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        SizedBox(
-          width: 375 * AppSizes.wRatio,
-          child: TextFormField(
-            controller: controller,
-            validator: validator,
+    return Center(
+      child: Column(
+        spacing: 10,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
             style: TextStyle(
-              color: AppColors.beigeColor,
-              fontSize: 16,
+              fontSize: 15,
               fontWeight: FontWeight.w500,
             ),
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: AppColors.pink,
-              hintText: hintText,
-              hintStyle: TextStyle(
-                color: AppColors.beigeColor.withValues(alpha: 0.45),
+          ),
+          SizedBox(
+            width: 375 * AppSizes.wRatio,
+            child: TextFormField(
+              controller: controller,
+              validator: validator,
+              style: TextStyle(
+                color: AppColors.beigeColor,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                height: 1,
               ),
-              contentPadding: EdgeInsets.symmetric(horizontal: AppSizes.padding36),
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(18),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: AppColors.pink,
+                hintText: hintText,
+                hintStyle: TextStyle(
+                  color: AppColors.beigeColor.withValues(alpha: 0.45),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  height: 1,
+                ),
+                contentPadding: EdgeInsets.symmetric(horizontal: AppSizes.padding36),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(18),
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

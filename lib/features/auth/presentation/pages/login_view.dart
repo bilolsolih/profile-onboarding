@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:profile/core/client.dart';
 import 'package:profile/core/presentation/widgets/recipe_elevated_button.dart';
+import 'package:profile/core/routing/routes.dart';
 import 'package:profile/features/auth/data/repositories/AuthRepository.dart';
-import 'package:profile/features/auth/presentation/pages/login_view_form.dart';
+import 'package:profile/features/auth/presentation/widgets/login_view_form.dart';
 import 'package:provider/provider.dart';
 
 import '../manager/login_view_model.dart';
@@ -15,12 +17,6 @@ class LoginView extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => LoginViewModel(
         repo: context.read<AuthRepository>(),
-      ),
-      child: RecipeElevatedButton(
-        text: "Sign Up",
-        fontSize: 20,
-        callback: () {},
-        size: Size(207, 45),
       ),
       builder: (context, recipeButton) {
         final vm = context.watch<LoginViewModel>();
@@ -58,7 +54,12 @@ class LoginView extends StatelessWidget {
                 size: Size(207, 45),
               ),
               SizedBox(height: 27),
-              recipeButton!,
+              RecipeElevatedButton(
+                text: "Sign Up",
+                fontSize: 20,
+                callback: () => context.go(Routes.signup),
+                size: Size(207, 45),
+              ),
             ],
           ),
         );

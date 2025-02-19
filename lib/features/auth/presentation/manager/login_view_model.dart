@@ -7,7 +7,7 @@ class LoginViewModel extends ChangeNotifier {
     required AuthRepository repo,
   }) : _repo = repo;
   final AuthRepository _repo;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   String? _errorMessage;
 
@@ -15,7 +15,6 @@ class LoginViewModel extends ChangeNotifier {
 
   String? get errorMessage => _errorMessage;
 
-  // final formKey = GlobalKey<FormState>();
   final loginController = TextEditingController();
   final passwordController = TextEditingController();
 
