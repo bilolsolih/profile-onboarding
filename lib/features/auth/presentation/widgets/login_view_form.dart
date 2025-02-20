@@ -25,6 +25,7 @@ class LoginViewForm extends StatelessWidget {
           RecipePasswordFormField(
             title: "Password",
             controller: vm.passwordController,
+            validator: (value) => null,
           ),
         ],
       ),

@@ -5,6 +5,7 @@ import 'colors.dart';
 class AppThemes {
   static final darkTheme = ThemeData(
     appBarTheme: AppBarTheme(
+      surfaceTintColor: Colors.transparent,
       titleTextStyle: TextStyle(
         color: AppColors.redPinkMain,
         fontSize: 20,

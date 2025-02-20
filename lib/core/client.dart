@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:profile/core/exceptions/auth_exception.dart';
 import 'package:profile/core/interceptor.dart';
+import 'package:profile/features/auth/data/models/user_model.dart';
+
 
 class ApiClient {
   ApiClient() {
     dio = Dio(
-      BaseOptions(baseUrl: "http://192.168.1.80/api/v1", validateStatus: (status) => true),
+      BaseOptions(baseUrl: "http://10.10.3.176/api/v1"),
     );
     dio.interceptors.add(AuthInterceptor());
   }
@@ -23,6 +25,19 @@ class ApiClient {
       return data['accessToken']!;
     } else {
       throw AuthException(message: "Login qilib bo'madi, xullasi nimadur noto'g'ri ketgan.");
+    }
+  }
+
+  Future<bool> signUp(UserModel model) async {
+    var response = await dio.post(
+      '/auth/register',
+      data: model.toJson(),
+    );
+    // return response.statusCode == 201 ? true : false;
+    if (response.statusCode == 201) {
+      return true;
+    } else {
+      return false;
     }
   }
 
