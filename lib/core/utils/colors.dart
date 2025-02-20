@@ -6,12 +6,15 @@ class AppColors {
   static const pinkSub = Color(0xFFEC888D);
   static const pink = Color(0xFFFFC6C9);
 
-  static final lightColorScheme = ColorScheme.fromSeed(
+  static final lightColorScheme = ColorScheme(
+    brightness: Brightness.dark,
     surface: beigeColor,
     onSurface: Colors.white,
     primary: redPinkMain,
     onPrimary: Colors.white,
-    tertiary: Colors.black,
-    seedColor: redPinkMain,
+    secondary: pink,
+    onSecondary: pinkSub,
+    error: redPinkMain,
+    onError: Colors.white,
   );
 }

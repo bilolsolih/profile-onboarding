@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:profile/core/utils/themes.dart';
 import 'core/core.dart';
 import 'package:provider/provider.dart';
 
@@ -20,17 +21,7 @@ class ProfileApp extends StatelessWidget {
     return MultiProvider(
       providers: providers,
       builder: (context, child) => MaterialApp.router(
-        theme: ThemeData(
-          appBarTheme: AppBarTheme(
-            titleTextStyle: TextStyle(
-              color: AppColors.redPinkMain,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          fontFamily: "Poppins",
-          colorScheme: AppColors.lightColorScheme,
-        ),
+        theme: AppThemes.darkTheme,
         routerConfig: router,
       ),
     );

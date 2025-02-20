@@ -17,13 +17,13 @@ final GoRouter router = GoRouter(
       routes: [
         GoRoute(
           path: Routes.login,
-          builder: (context, state) => LoginView(),
+          builder: (context, state) {
+            return LoginView();
+          },
         ),
         GoRoute(
           path: Routes.signup,
-          builder: (context, state) => SignUpView(
-            vm: SignUpViewModel(),
-          ),
+          builder: (context, state) => SignUpView(),
         ),
         GoRoute(
           path: Routes.onboarding,
