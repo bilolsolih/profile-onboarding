@@ -3,7 +3,7 @@ import 'package:profile/core/utils/colors.dart';
 import 'package:profile/core/utils/sizes.dart';
 
 class RecipeTextFormField extends StatelessWidget {
-  const RecipeTextFormField({
+  RecipeTextFormField({
     super.key,
     required this.title,
     required this.hintText,
@@ -14,7 +14,7 @@ class RecipeTextFormField extends StatelessWidget {
   final String title, hintText;
   final String? Function(String? value) validator;
   final TextEditingController controller;
-
+  final focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -32,6 +32,8 @@ class RecipeTextFormField extends StatelessWidget {
           SizedBox(
             width: 375 * AppSizes.wRatio,
             child: TextFormField(
+              onTapOutside: (event) => focusNode.unfocus(),
+              focusNode: focusNode,
               controller: controller,
               validator: validator,
               style: TextStyle(
