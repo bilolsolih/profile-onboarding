@@ -1,14 +1,13 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:profile/core/exceptions/auth_exception.dart';
 import 'package:profile/core/interceptor.dart';
 import 'package:profile/features/auth/data/models/user_model.dart';
 
-
 class ApiClient {
   ApiClient() {
-    dio = Dio(
-      BaseOptions(baseUrl: "http://10.10.3.176/api/v1"),
-    );
+    dio = Dio(BaseOptions(baseUrl: "http://192.168.1.80/api/v1"));
     dio.interceptors.add(AuthInterceptor());
   }
 
@@ -35,6 +34,26 @@ class ApiClient {
     );
     // return response.statusCode == 201 ? true : false;
     if (response.statusCode == 201) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> uploadProfilePhoto(File file) async {
+    FormData formData = FormData.fromMap(
+      {"profilePhoto": await MultipartFile.fromFile(file.path, filename: file.path.split('/').last)},
+    );
+
+    var response = await dio.patch(
+      '/auth/upload',
+      data: formData,
+      options: Options(
+        headers: {"Content-Type": "multipart/form-data"},
+      ),
+    );
+
+    if (response.statusCode == 200) {
       return true;
     } else {
       return false;

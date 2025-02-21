@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:profile/core/routing/routes.dart';
 import 'package:profile/features/auth/data/repositories/AuthRepository.dart';
+
+import '../widgets/successful_sign_up_dialog.dart';
 
 class SignUpViewModel extends ChangeNotifier {
   SignUpViewModel({required AuthRepository authRepo}) : _authRepo = authRepo;
@@ -22,7 +26,7 @@ class SignUpViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> signUp() async {
+  Future signUp(BuildContext context) async {
     final result = await _authRepo.signUp(
       firstName: firstNameController.text,
       lastName: lastNameController.text,
@@ -32,6 +36,18 @@ class SignUpViewModel extends ChangeNotifier {
       dateOfBirth: selectedDate!,
       password: passwordController.text,
     );
-    return result;
+
+    if (formKey.currentState!.validate()) {
+      if (result && context.mounted) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => SuccessfulSignUpDialog(),
+        );
+        await Future.delayed(Duration(seconds: 3));
+
+        context.go(Routes.onboarding);
+      }
+    }
   }
 }

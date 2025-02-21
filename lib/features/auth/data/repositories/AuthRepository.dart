@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:profile/core/client.dart';
 import 'package:profile/core/secure_storage.dart';
 import 'package:profile/features/auth/data/models/user_model.dart';
@@ -39,6 +41,11 @@ class AuthRepository {
       ),
     );
 
+    return result;
+  }
+
+  Future<bool> uploadProfilePhoto(File file) async{
+    final result = await client.uploadProfilePhoto(file);
     return result;
   }
 
